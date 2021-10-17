@@ -21,7 +21,7 @@ export const Paginator = ({ total, onClickPage }: PaginatorProps) => {
   }, [total]);
 
   const onClickPageHandler = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     page: number
   ) => {
     event.preventDefault();
@@ -30,25 +30,26 @@ export const Paginator = ({ total, onClickPage }: PaginatorProps) => {
     onClickPage(page);
   };
 
+  const paginatorItems = Array(numberOfPages)
+    .fill("")
+    .map((value: string, index: number) => {
+      const page = index + Pagination.offset;
+      return (
+        <Button
+          sx={paginatorItemStyles}
+          key={index}
+          onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
+            onClickPageHandler(event, page)
+          }
+        >
+          {page}
+        </Button>
+      );
+    });
+
   return (
     <div sx={paginatorRootStyles}>
-      current page: {currentPage} ~
-      {Array(numberOfPages)
-        .fill("")
-        .map((value: string, index: number) => {
-          const page = index + Pagination.offset;
-          return (
-            <Button
-              sx={paginatorItemStyles}
-              key={index}
-              onClick={(event: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
-                onClickPageHandler(event, page)
-              }
-            >
-              {page}
-            </Button>
-          );
-        })}
+      current page: {currentPage} ~{paginatorItems}
     </div>
   );
 };

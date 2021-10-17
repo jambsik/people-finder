@@ -13,7 +13,7 @@ import { Pagination } from "../../constants/Pagination";
 
 export interface PeopleProps {
   items: Array<ListItemProps>;
-  total: number;
+  total?: number;
 }
 
 const getPropsData = async (
@@ -31,7 +31,7 @@ const getPropsData = async (
 const People = ({ items, total }: PeopleProps) => {
   const router = useRouter();
   const [currentItems, setCurrentItems] = useState<Array<ListItemProps>>(items);
-  const [totalItems, setTotalItems] = useState<number>(total);
+  const [totalItems, setTotalItems] = useState<number | undefined>(total);
 
   const onClickItem = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
@@ -53,7 +53,7 @@ const People = ({ items, total }: PeopleProps) => {
   return (
     <>
       <List items={currentItems} onClickItem={onClickItem} />
-      <Paginator total={totalItems} onClickPage={onClickPage} />
+      {totalItems && <Paginator total={totalItems} onClickPage={onClickPage} />}
     </>
   );
 };
