@@ -1,6 +1,6 @@
 /** @jsxImportSource theme-ui */
 
-import { ReactNode } from "react";
+import {ReactNode} from "react";
 import {
   layoutContainerStyles,
   layoutRootStyles,

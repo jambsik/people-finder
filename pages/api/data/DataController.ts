@@ -5,6 +5,7 @@ import {HttpStatusCode} from "../../../constants/HttpStatusCode";
 import {simulateFindById, simulatePagination,} from "../../../helpers/prepareDataHelper";
 import {Pagination} from "../../../constants/Pagination";
 
+
 export const getAllData = (
   req: NextApiRequest,
   res: NextApiResponse<Person[]>

@@ -1,12 +1,12 @@
 /** @jsxImportSource theme-ui */
-import React, { MouseEventHandler } from "react";
+import React from "react";
 import { ListItem, ListItemProps } from "./ListItem";
 import { listRootStyles } from "./List.styles";
 
 export interface ListProps {
   items: Array<ListItemProps>;
   onClickItem: (
-    event: MouseEventHandler<HTMLDivElement>,
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
     item: ListItemProps
   ) => void;
 }
@@ -17,7 +17,7 @@ export const List = ({ items, onClickItem }: ListProps) => {
       {items.map((item: ListItemProps) => (
         <div
           key={item.id}
-          onClick={(event: MouseEventHandler<HTMLDivElement>) =>
+          onClick={(event: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
             onClickItem(event, item)
           }
         >

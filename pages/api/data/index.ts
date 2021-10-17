@@ -1,5 +1,5 @@
 import nc from "next-connect";
-import { getAllData } from "./DataController";
+import {getAllData} from "./DataController";
 
 const handler = nc().get(getAllData);
 

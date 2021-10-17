@@ -1,6 +1,6 @@
 /** @jsxImportSource theme-ui */
-import { listItemRootStyles } from "./List.styles";
-import { Image } from "theme-ui";
+import {listItemRootStyles} from "./List.styles";
+import {Image} from "theme-ui";
 
 export interface ListItemProps {
   id: string;

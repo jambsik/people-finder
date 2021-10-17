@@ -1,7 +1,7 @@
 import { Pagination } from "../constants/Pagination";
 
 export type PaginationFilterType = {
-  [key: string]: string | string[];
+  [key: string]: any;
 };
 
 export const simulatePagination = <Type>(
@@ -15,9 +15,10 @@ export const simulatePagination = <Type>(
   const hasFilters = filterKeys.length > 0;
 
   if (hasFilters) {
-    dataToTransform = data.filter((item: Type) =>
+    dataToTransform = data.filter((item: Type): boolean =>
       Object.keys(filters).some(
-        (propertyName: string) => item[propertyName] === filters[propertyName]
+        (propertyName: string): boolean =>
+          item[propertyName as keyof Type] === filters[propertyName]
       )
     );
   }
