@@ -10,6 +10,7 @@ import { Person } from "../../Models/Person";
 import { Paginator } from "../../features/Paginator/Paginator";
 import { PaginationFilterType } from "../../helpers/prepareDataHelper";
 import { Pagination } from "../../constants/Pagination";
+import { PeopleFilters } from "../../components/PeopleFilters/PeopleFilters";
 
 export interface PeopleProps {
   items: Array<ListItemProps>;
@@ -52,6 +53,7 @@ const People = ({ items, total }: PeopleProps) => {
 
   return (
     <>
+      <PeopleFilters />
       <List items={currentItems} onClickItem={onClickItem} />
       {totalItems && <Paginator total={totalItems} onClickPage={onClickPage} />}
     </>
