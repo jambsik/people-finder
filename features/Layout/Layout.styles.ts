@@ -10,7 +10,7 @@ export const layoutStyles = {
   height: "100%",
 };
 
-export const layoutContainerStyles = {
+export const layoutRootStyles = {
   width: "100%",
   height: "100%",
   display: "flex",
@@ -28,4 +28,10 @@ export const layoutTopStyles = {
   height: "80px",
   backgroundColor: (theme: Theme) => theme.colors?.primary,
   borderBottom: borderStyles,
+};
+
+export const layoutContainerStyles = {
+  width: "100%",
+  height: "100%",
+  padding: "16px",
 };

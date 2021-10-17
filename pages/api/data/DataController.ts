@@ -1,13 +1,9 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import type {NextApiRequest, NextApiResponse} from "next";
 import FakeDBData from "../../../config/data.json";
-import { Person } from "../../../Models/Person";
-import { HttpStatusCode } from "../../../constants/HttpStatusCode";
-import {
-  PaginationFilterType,
-  simulateFindById,
-  simulatePagination,
-} from "../../../helpers/prepareDataHelper";
-import { Pagination } from "../../../constants/Pagination";
+import {Person} from "../../../Models/Person";
+import {HttpStatusCode} from "../../../constants/HttpStatusCode";
+import {simulateFindById, simulatePagination,} from "../../../helpers/prepareDataHelper";
+import {Pagination} from "../../../constants/Pagination";
 
 export const getAllData = (
   req: NextApiRequest,

@@ -1,8 +1,9 @@
 /** @jsxImportSource theme-ui */
 
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import {
   layoutContainerStyles,
+  layoutRootStyles,
   layoutSideStyles,
   layoutStyles,
   layoutTopStyles,
@@ -18,9 +19,9 @@ export const Layout = ({ children, menu, toolbar }: LayoutProps) => {
   return (
     <div sx={layoutStyles}>
       <div sx={layoutTopStyles}>{toolbar}</div>
-      <div sx={layoutContainerStyles}>
+      <div sx={layoutRootStyles}>
         <div sx={layoutSideStyles}>{menu}</div>
-        {children}
+        <div sx={layoutContainerStyles}>{children}</div>
       </div>
     </div>
   );
