@@ -11,10 +11,12 @@ export const convertPeopleToListItems = (people: Array<Person>) =>
       forename,
       middleNames,
       surname,
+      emailAddress,
       picture,
     }: Person): ListItemProps => ({
       id,
       title: `${title} ${forename} ${middleNames} ${surname}`,
       picture: `${BUCKET_URL}${picture}`,
+      description: `${emailAddress}`,
     })
   );

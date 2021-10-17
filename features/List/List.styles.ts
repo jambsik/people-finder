@@ -11,9 +11,11 @@ export const listItemRootStyles = {
   width: "100%",
   height: "80px",
   display: "flex",
-  alignItems:'center',
+  alignItems: "center",
+  justifyContent: "space-between",
   backgroundColor: (theme: Theme) => theme.colors?.primary,
   marginBottom: "24px",
   borderRadius: "8px",
   padding: "16px",
+  cursor: "pointer",
 };
