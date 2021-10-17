@@ -1,6 +1,6 @@
-import axios from "axios";
-import {EndPoints} from "../constants/EndPoints";
-import {Person} from "../Models/Person";
+import axios, { AxiosError } from "axios";
+import { EndPoints } from "../constants/EndPoints";
+import { Person } from "../Models/Person";
 
 const API_PATH = process.env.NEXT_PUBLIC_API_URL;
 
@@ -9,8 +9,8 @@ export const getAllPeopleData = (): Promise<Array<Person>> =>
     try {
       const { data } = await axios.get(`${API_PATH}/${EndPoints.People}`);
 
-      resolve(data);
-    } catch (error: Error) {
+      resolve(data as Array<Person>);
+    } catch (error) {
       resolve([]);
     }
   });

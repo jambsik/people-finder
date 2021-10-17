@@ -1,10 +1,12 @@
-import type {NextApiRequest, NextApiResponse} from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 import FakeDBData from "../../../config/data.json";
-import {Person} from "../../../Models/Person";
-import {HttpStatusCode} from "../../../constants/HttpStatusCode";
-import {simulateFindById, simulatePagination,} from "../../../helpers/prepareDataHelper";
-import {Pagination} from "../../../constants/Pagination";
-
+import { Person } from "../../../Models/Person";
+import { HttpStatusCode } from "../../../constants/HttpStatusCode";
+import {
+  simulateFindById,
+  simulatePagination,
+} from "../../../helpers/prepareDataHelper";
+import { Pagination } from "../../../constants/Pagination";
 
 export const getAllData = (
   req: NextApiRequest,
@@ -15,13 +17,13 @@ export const getAllData = (
 
     const data: Person[] = simulatePagination<Person>(
       FakeDBData,
-      page ? parseInt(page) : Pagination.DefaultPage,
-      limit ? parseInt(limit) : Pagination.DefaultLimit,
+      page ? parseInt(page as string) : Pagination.DefaultPage,
+      limit ? parseInt(limit as string) : Pagination.DefaultLimit,
       filters
     );
 
     res.status(HttpStatusCode.OK).json(data);
-  } catch (e: Error) {
+  } catch (error) {
     res.status(HttpStatusCode.INTERNAL_SERVER_ERROR);
   }
 };
@@ -35,13 +37,13 @@ export const getDataById = (
 
     if (hasId) {
       const data: Person | undefined = simulateFindById<Person>(
-        query!.id,
+        query!.id as string,
         FakeDBData
       );
 
       res.status(HttpStatusCode.OK).json(data || {});
     }
-  } catch (e: Error) {
+  } catch (error) {
     res.status(HttpStatusCode.INTERNAL_SERVER_ERROR);
   }
 };

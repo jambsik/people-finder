@@ -4,6 +4,10 @@ export type PaginationFilterType = {
   [key: string]: any;
 };
 
+export type DataByIdType = {
+  id: string;
+};
+
 export const simulatePagination = <Type>(
   data: Array<Type>,
   page: number,
@@ -26,7 +30,7 @@ export const simulatePagination = <Type>(
   return dataToTransform.slice((page - Pagination.offset) * page, page * limit);
 };
 
-export const simulateFindById = <Type>(
+export const simulateFindById = <Type extends DataByIdType>(
   id: string,
   data: Array<Type>
-): Type | undefined => data.find((item: Type) => item?.id === id);
+): Type | undefined => data.find((item: Type) => item.id === id);

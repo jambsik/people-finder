@@ -1,10 +1,10 @@
 import React from "react";
-import {List} from "../../features/List/List";
-import {ListItemProps} from "../../features/List/ListItem";
-import {getAllPeopleData} from "../../services/peopleApi";
-import {convertPeopleToListItems} from "./peopleHelper";
-import {useRouter} from "next/router";
-import {AppRoutes} from "../../constants/AppRoutes";
+import { List } from "../../features/List/List";
+import { ListItemProps } from "../../features/List/ListItem";
+import { getAllPeopleData } from "../../services/peopleApi";
+import { convertPeopleToListItems } from "../../helpers/peopleHelper";
+import { useRouter } from "next/router";
+import { AppRoutes } from "../../constants/AppRoutes";
 
 export interface PeopleProps {
   items: Array<ListItemProps>;

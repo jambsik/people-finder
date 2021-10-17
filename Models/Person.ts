@@ -1,4 +1,6 @@
-export interface Person {
+import {DataByIdType} from '../helpers/prepareDataHelper';
+
+export interface Person extends DataByIdType{
   id: string;
   title: string;
   forename: string;
@@ -7,7 +9,7 @@ export interface Person {
   gender: string;
   dateOfBirth: string;
   homeBuildingName: string;
-  homeBuildingNumber: number;
+  homeBuildingNumber?: number;
   homeSubBuilding: string;
   homeStreet: string;
   homeCity: string;
