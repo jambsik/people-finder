@@ -5,6 +5,8 @@ import { getAllPeopleData } from "../../services/peopleApi";
 import { convertPeopleToListItems } from "../../helpers/peopleHelper";
 import { useRouter } from "next/router";
 import { AppRoutes } from "../../constants/AppRoutes";
+import { ApiResponse } from "../../Models/ApiResponse";
+import { Person } from "../../Models/Person";
 
 export interface PeopleProps {
   items: Array<ListItemProps>;
@@ -27,8 +29,9 @@ const People = ({ items }: PeopleProps) => {
 
 // This gets called on every request
 export async function getServerSideProps() {
-  const data = await getAllPeopleData();
-  const items = convertPeopleToListItems(data);
+  const { data, total }: ApiResponse<Person> = await getAllPeopleData();
+  console.log('total',total);
+  const items = convertPeopleToListItems(data || []);
 
   return { props: { items } };
 }
