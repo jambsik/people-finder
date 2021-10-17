@@ -15,7 +15,6 @@ export const getAllData = (
 ) => {
   try {
     const { page, limit, ...filters } = req.query;
-
     const data: Array<Person> = simulatePagination<Person>(
       FakeDBData,
       page ? parseInt(page as string) : Pagination.DefaultPage,

@@ -27,7 +27,7 @@ export const simulatePagination = <Type>(
     );
   }
 
-  return dataToTransform.slice((page - Pagination.offset) * page, page * limit);
+  return dataToTransform.slice((page - Pagination.offset) * limit, page * limit);
 };
 
 export const simulateFindById = <Type extends DataByIdType>(

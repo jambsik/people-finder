@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { List } from "../../features/List/List";
 import { ListItemProps } from "../../features/List/ListItem";
 import { getAllPeopleData } from "../../services/peopleApi";
@@ -7,13 +7,31 @@ import { useRouter } from "next/router";
 import { AppRoutes } from "../../constants/AppRoutes";
 import { ApiResponse } from "../../Models/ApiResponse";
 import { Person } from "../../Models/Person";
+import { Paginator } from "../../features/Paginator/Paginator";
+import { PaginationFilterType } from "../../helpers/prepareDataHelper";
+import { Pagination } from "../../constants/Pagination";
 
 export interface PeopleProps {
   items: Array<ListItemProps>;
+  total: number;
 }
 
-const People = ({ items }: PeopleProps) => {
+const getPropsData = async (
+  params?: PaginationFilterType
+): Promise<PeopleProps> =>
+  getAllPeopleData(params).then(({ data, total }: ApiResponse<Person>) => {
+    const items = convertPeopleToListItems(data || []);
+
+    return {
+      items,
+      total,
+    };
+  });
+
+const People = ({ items, total }: PeopleProps) => {
   const router = useRouter();
+  const [currentItems, setCurrentItems] = useState<Array<ListItemProps>>(items);
+  const [totalItems, setTotalItems] = useState<number>(total);
 
   const onClickItem = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
@@ -23,17 +41,27 @@ const People = ({ items }: PeopleProps) => {
 
     router.push(`${AppRoutes.People}/${item.id}`);
   };
+  const onClickPage = async (page: number) => {
+    const { items, total } = await getPropsData({
+      page,
+    });
 
-  return <List items={items} onClickItem={onClickItem} />;
+    setCurrentItems(items);
+    setTotalItems(total);
+  };
+
+  return (
+    <>
+      <List items={currentItems} onClickItem={onClickItem} />
+      <Paginator total={totalItems} onClickPage={onClickPage} />
+    </>
+  );
 };
 
 // This gets called on every request
 export async function getServerSideProps() {
-  const { data, total }: ApiResponse<Person> = await getAllPeopleData();
-  console.log('total',total);
-  const items = convertPeopleToListItems(data || []);
-
-  return { props: { items } };
+  const { total, items } = await getPropsData();
+  return { props: { items, total } };
 }
 
 export default People;
