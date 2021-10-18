@@ -1,34 +1,66 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Intro
+Nextjs allows us to develop work with React Js in a faster and easier way. It saves us all the management and configuration of Babel, webpack, Hot module replacement to be able to make changes without the need for a full reload during development. It gives us a better performance in the application because we avoid work to the browser to serve directly the pages in html.
+It gives us the advantage of creating routes from its folder structure without the need to configure it. It is a full stack frame work in which we can even create Api routes.
+It has been chosen for this exercise also in order to facilitate the rapid creation of an api rest in order to provide a data simulation.
+This practice for creating quick micro apps with everything integrated is quite useful. If we wanted to make a public api or a multi-app api it would not be done this way. We would opt for standalone api's with micro services architecture.
+User data and images are not secured as a result of the test. If it were a real environment they should not be public and the resources could only be accessed via token.
+
+This project uses theme-ui to theme the application and also has its own component library (separate project), which will be added to the exercise as well. It is published on npm via github and is called @jambsik-labs/ui-components.
+
+## Node version: 14.18.1
+## Env Variables: 
+``
+NEXT_PUBLIC_API_URL=http://localhost:3000/api
+NEXT_PUBLIC_S3_BUCKET=https://people-bucket-s3.s3.eu-west-3.amazonaws.com/
+``
 
 ## Getting Started
 
 First, run the development server:
 
 ```bash
-npm run dev
-# or
+touch .env.local or create new file .env.local in the root project.
+
+yarn install
 yarn dev
 ```
-
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## UI - Navigation
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+``
+Home Page: http://localhost:3000/
+``
 
-## Learn More
+``
+People Page: http://localhost:3000/people
+``
 
-To learn more about Next.js, take a look at the following resources:
+``
+Person Detail: http://localhost:3000/people/[ID]
+``
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Api - Navigation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+``
+getAll: http://localhost:3000/api/data
+``
 
-## Deploy on Vercel
+``
+Paginate: http://localhost:3000/api/data?limit=1&page=2
+``
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+``
+Get by Id: http://localhost:3000/api/data/1
+``
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+``
+Filter: http://localhost:3000/api/data?gender=male&surname=Jackson
+``
+
+## Build
+
+``
+yarn build
+``
