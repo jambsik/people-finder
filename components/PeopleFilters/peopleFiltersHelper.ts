@@ -1,4 +1,5 @@
 export const peopleFiltersInitialValues = {
+  title: "",
   forename: "",
   middleNames: "",
   emailAddress: "",
