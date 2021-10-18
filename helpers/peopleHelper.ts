@@ -1,5 +1,5 @@
-import {Person} from "../Models/Person";
-import {ListItemProps} from "../features/List/ListItem";
+import { Person } from "../Models/Person";
+import { ListItemProps } from "@jambsik-labs/ui-components";
 
 const BUCKET_URL = process.env.NEXT_PUBLIC_S3_BUCKET;
 

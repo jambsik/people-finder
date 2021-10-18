@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { List } from "../../features/List/List";
-import { ListItemProps } from "../../features/List/ListItem";
+import { Paginator, List, ListItemProps } from "@jambsik-labs/ui-components";
+
 import { getAllPeopleData } from "../../services/peopleApi";
 import { convertPeopleToListItems } from "../../helpers/peopleHelper";
 import { useRouter } from "next/router";
 import { AppRoutes } from "../../constants/AppRoutes";
 import { ApiResponse, ApiResponseMetadata } from "../../Models/ApiResponse";
 import { Person } from "../../Models/Person";
-import { Paginator } from "../../features/Paginator/Paginator";
 import { PaginationFilterType } from "../../helpers/prepareDataHelper";
 import { PeopleFilters } from "../../components/PeopleFilters/PeopleFilters";
 import { cleanEmptyValues } from "../../components/PeopleFilters/peopleFiltersHelper";
