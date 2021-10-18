@@ -9,10 +9,8 @@ export type DataByIdType = {
   id: string;
 };
 
-export const simulatePagination = <Type>(
+export const filterData = <Type>(
   data: Array<Type>,
-  page: number,
-  limit: number,
   filters: PaginationFilterType
 ): Array<Type> => {
   let dataToTransform = data;
@@ -21,26 +19,32 @@ export const simulatePagination = <Type>(
 
   if (hasFilters) {
     dataToTransform = data.filter((item: Type): boolean =>
-      Object.keys(filters).some(
+      Object.keys(filters).every(
         (propertyName: string): boolean =>
           item[propertyName as keyof Type] === filters[propertyName]
       )
     );
   }
 
-  return dataToTransform.slice(
-    (page - Pagination.offset) * limit,
-    page * limit
-  );
+  return dataToTransform;
 };
 
-export const simulateFindById = <Type extends DataByIdType>(
+export const applyPagination = <Type>(
+  data: Array<Type>,
+  page: number,
+  limit: number
+): Array<Type> => data.slice((page - Pagination.offset) * limit, page * limit);
+
+export const findById = <Type extends DataByIdType>(
   id: string,
   data: Array<Type>
 ): Type | undefined => data.find((item: Type) => item.id === id);
 
 export const metadataMock: ApiResponseMetadata = {
   filters: {
+    title: {
+      type: "string",
+    },
     forename: {
       type: "string",
       validations: {

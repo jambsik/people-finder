@@ -10,6 +10,7 @@ import { Person } from "../../Models/Person";
 import { Paginator } from "../../features/Paginator/Paginator";
 import { PaginationFilterType } from "../../helpers/prepareDataHelper";
 import { PeopleFilters } from "../../components/PeopleFilters/PeopleFilters";
+import { cleanEmptyValues } from "../../components/PeopleFilters/peopleFiltersHelper";
 
 export interface PeopleProps {
   items: Array<ListItemProps>;
@@ -36,6 +37,8 @@ const People = ({ items, total, metadata }: PeopleProps) => {
   const router = useRouter();
   const [currentItems, setCurrentItems] = useState<Array<ListItemProps>>(items);
   const [totalItems, setTotalItems] = useState<number | undefined>(total);
+  const [filters, setFilters] = useState<{ [key: string]: any } | {}>({});
+  const hasItems = totalItems && totalItems > 0;
 
   const onClickItem = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
@@ -45,20 +48,37 @@ const People = ({ items, total, metadata }: PeopleProps) => {
 
     router.push(`${AppRoutes.People}/${item.id}`);
   };
-  const onClickPage = async (page: number) => {
-    const { items, total } = await getPropsData({
-      page,
-    });
+  const updateData = async (params: PaginationFilterType) => {
+    const { items, total } = await getPropsData(params);
 
     setCurrentItems(items);
     setTotalItems(total);
   };
 
+  const onSubmit = async (values: { [key: string]: any }) => {
+    const valuesFiltered = cleanEmptyValues(values);
+
+    await updateData({
+      ...valuesFiltered,
+    });
+
+    setFilters(valuesFiltered);
+  };
+
   return (
     <>
-      {metadata && <PeopleFilters metadata={metadata} />}
-      <List items={currentItems} onClickItem={onClickItem} />
-      {totalItems && <Paginator total={totalItems} onClickPage={onClickPage} />}
+      {metadata && <PeopleFilters metadata={metadata} onSubmit={onSubmit} />}
+      {hasItems ? (
+        <>
+          <List items={currentItems} onClickItem={onClickItem} />
+          <Paginator
+            total={totalItems}
+            onClickPage={(page: number) => updateData({ ...filters, page })}
+          />
+        </>
+      ) : (
+        <span>Nothing to show</span>
+      )}
     </>
   );
 };
