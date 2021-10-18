@@ -3,6 +3,7 @@ import FakeDBData from "../../../config/data.json";
 import { Person } from "../../../Models/Person";
 import { HttpStatusCode } from "../../../constants/HttpStatusCode";
 import {
+  metadataMock,
   simulateFindById,
   simulatePagination,
 } from "../../../helpers/prepareDataHelper";
@@ -24,6 +25,7 @@ export const getAllData = (
     const response: ApiResponse<Person> = {
       data,
       total: FakeDBData.length,
+      metadata: metadataMock,
     };
 
     res.status(HttpStatusCode.OK).json(response);

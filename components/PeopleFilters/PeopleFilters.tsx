@@ -1,18 +1,23 @@
 /** @jsxImportSource theme-ui */
-import {Box, Button, Grid, Input, Label} from "theme-ui";
-import {peopleFiltersRootStyles, peopleFiltersSubmitStyles,} from "./PeopleFilters.styles";
-import {PeopleFields} from "../../constants/PeopleFields";
-import {camelPropToText} from "../../helpers/textTransform";
+import { Box, Button, Grid, Input, Label } from "theme-ui";
+import {
+  peopleFiltersRootStyles,
+  peopleFiltersSubmitStyles,
+} from "./PeopleFilters.styles";
+import { camelPropToText } from "../../helpers/textTransform";
+import { ApiResponseMetadata } from "../../Models/ApiResponse";
 
-export interface PeopleFiltersProps {}
+export interface PeopleFiltersProps {
+  metadata: ApiResponseMetadata;
+}
 
-export const PeopleFilters = (props: PeopleFiltersProps) => {
-  const fields = Object.values(PeopleFields);
+export const PeopleFilters = ({ metadata }: PeopleFiltersProps) => {
+  const filterKeys = Object.keys(metadata.filters);
 
-  const generateInputFilter = (field: PeopleFields) => (
+  const generateInputFilter = (field: string, type: string) => (
     <Box key={field}>
       <Label htmlFor={field}>{camelPropToText(field)}</Label>
-      <Input name={field} id={field} mb={3} />
+      <Input name={field} id={field} mb={3} type={type} />
     </Box>
   );
 
@@ -23,9 +28,12 @@ export const PeopleFilters = (props: PeopleFiltersProps) => {
       onSubmit={(e) => e.preventDefault()}
     >
       <Grid gap={2} columns={4}>
-        {fields.map((field: PeopleFields) => generateInputFilter(field))}
+        {filterKeys &&
+          filterKeys.map((field: string) =>
+            generateInputFilter(field, metadata.filters[field].type)
+          )}
       </Grid>
-      <Button sx={peopleFiltersSubmitStyles}>Submit</Button>
+      <Button sx={peopleFiltersSubmitStyles}>Apply filters</Button>
     </Box>
   );
 };

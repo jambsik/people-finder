@@ -49,7 +49,8 @@ export const Paginator = ({ total, onClickPage }: PaginatorProps) => {
 
   return (
     <div sx={paginatorRootStyles}>
-      current page: {currentPage} ~{paginatorItems}
+      current page: {currentPage} - items per page: {Pagination.DefaultLimit} ~
+      {paginatorItems}
     </div>
   );
 };

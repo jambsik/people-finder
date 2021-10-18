@@ -7,5 +7,5 @@ export const peopleFiltersRootStyles = {
 
 export const peopleFiltersSubmitStyles = {
   width: "250px",
+  cursor: "pointer",
 };
-
