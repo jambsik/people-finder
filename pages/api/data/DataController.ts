@@ -47,6 +47,7 @@ export const getDataById = (
 
       const response: ApiResponse<Person> = {
         item,
+        metadata: metadataMock,
       };
 
       res.status(HttpStatusCode.OK).json(response);
