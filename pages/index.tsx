@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import { AppRoutes } from "../constants/AppRoutes";
 import { Theme } from "@theme-ui/css";
-import { violetMedium } from "../features/theme/colors";
+import { violetMedium } from "@jambsik-labs/ui-components";
 
 const rootStyles = {
   width: "100%",
