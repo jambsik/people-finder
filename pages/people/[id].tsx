@@ -6,24 +6,24 @@ import { Person } from "../../Models/Person";
 import { camelPropToText } from "../../helpers/textTransform";
 
 export interface PeopleDetailProps {
-  item?: Person;
+  item: Person | undefined;
   metadata: ApiResponseMetadata;
 }
 
 const PeopleDetail = ({ item }: PeopleDetailProps) => {
   const fields = item && Object.keys(item);
 
-  return (
-    fields && (
-      <Grid gap={4} columns={4}>
-        {fields.map((key: string) => (
-          <Box key={key}>
-            <Label>{camelPropToText(key)}:</Label>
-            <Label>{item[key as keyof Person]}</Label>
-          </Box>
-        ))}
-      </Grid>
-    )
+  return fields ? (
+    <Grid gap={4} columns={4}>
+      {fields.map((key: string) => (
+        <Box key={key}>
+          <Label>{camelPropToText(key)}:</Label>
+          <Label>{item[key as keyof Person]}</Label>
+        </Box>
+      ))}
+    </Grid>
+  ) : (
+    <Label>Id not exists</Label>
   );
 };
 
