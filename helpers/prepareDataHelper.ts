@@ -21,7 +21,7 @@ export const filterData = <Type>(
     dataToTransform = data.filter((item: Type): boolean =>
       Object.keys(filters).every(
         (propertyName: string): boolean =>
-          item[propertyName as keyof Type]=== filters[propertyName]
+          item[propertyName as keyof Type] === filters[propertyName]
       )
     );
   }

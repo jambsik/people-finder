@@ -1,11 +1,12 @@
 import "../styles/app.css";
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "theme-ui";
-import { darkTheme, Layout } from "@jambsik-labs/ui-components";
+import { whiteTheme } from "../features/theme/whiteTheme";
+import { Layout } from "../features/Layout/Layout";
 
 function App({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={whiteTheme}>
       <Layout>
         <Component {...pageProps} />
       </Layout>
