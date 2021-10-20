@@ -249,10 +249,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.0.tgz#87de7af9c231826fdd68ac7258f77c429e0e5fcf"
   integrity sha512-wdppn25U8z/2yiaT6YGquE6X8sSv7hNMWSXYSSU1jGv/yd6XqjXgTDJ8KP4NgjTXfJ3GbRjeeb8RTV7a/VpM+w==
 
-"@jambsik-labs/ui-components@^1.1.0":
-  version "1.1.0"
-  resolved "https://npm.pkg.github.com/download/@jambsik-labs/ui-components/1.1.0/0139b424af3e29a3ebb1067f818981e201b9ae8e050a4474c0cdcdbaa36b621b#75dfb5e2fddf2409818aa13abc30eb8e7da84d1e"
-  integrity sha512-d6VNfNtWB4/S6K9HJ4QrRGB5deLcyUOp2qNqx95K7qodqxJPydlEBbO8Pz6VPMOiceVobtHlSg59mwGhAKhM6A==
+"@jambsik-labs/ui-components@^1.5.0":
+  version "1.5.0"
+  resolved "https://npm.pkg.github.com/download/@jambsik-labs/ui-components/1.5.0/a9f12e1bc967d49fecf7817af86934ed58d00238562c02071c43fd713da2a976#6e3f46c7b49bdb6d231437daa8320a36d6c0e717"
+  integrity sha512-Sp7WcHgtc/OtaGsuhVIHHU1Jtwbt1S1BwGAlwkZP6E51xemdeFYjZpu4GiycrPIG6eYct8PzFuDUAw6et92gQA==
 
 "@mdx-js/react@^1.6.22":
   version "1.6.22"
